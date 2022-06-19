@@ -15,5 +15,6 @@
     </properties>
     <modules>
         <module>BatchHelloWorldTasklet</module>
+        <module>BatchHelloWorldTasklet</module>
     </modules>
 </project>
