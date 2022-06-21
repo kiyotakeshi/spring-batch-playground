@@ -16,3 +16,7 @@
     - ItemReader,ItemProcessor,ItemWriter の Interface が提供されている
   - Tasklet
     - Chunk では作れない機能を実装するときに使用
+
+- Listener(even listener)
+  - 何かしらをきっかけに起動する処理のこと
+  - Webアプリケーションと違い画面がないためログ出力が肝心

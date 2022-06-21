@@ -2,7 +2,9 @@ package com.example.config;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.Job;
+import org.springframework.batch.core.JobExecutionListener;
 import org.springframework.batch.core.Step;
+import org.springframework.batch.core.StepExecutionListener;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
@@ -23,9 +25,14 @@ public class BatchConfig {
     private final ItemProcessor<String, String> processor;
     private final ItemWriter writer;
 
+    private final JobExecutionListener jobListener;
+
+    private final StepExecutionListener stepListener;
+
     @Bean
     public Step chunkStep() {
         return stepBuilderFactory.get("HelloChunkStep")
+                .listener(stepListener)
                 // chunkSize = コミット間隔(一度に処理する件数)
                 // chunkSize 分 reader,processor を実行し、最後に一回 writer を実行
                 // writer が1回のみ実行なのは、まとめて書き込みを行ったほうが性能が良くなるため
@@ -43,6 +50,7 @@ public class BatchConfig {
         return jobBuilderFactory.get("HelloWorldChunkJob")
                 .incrementer(new RunIdIncrementer())
                 .start(chunkStep())
+                .listener(jobListener)
                 .build();
     }
 }
