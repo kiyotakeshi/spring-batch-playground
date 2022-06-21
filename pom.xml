@@ -15,6 +15,7 @@
     </properties>
     <modules>
         <module>BatchHelloWorldTasklet</module>
-        <module>BatchHelloWorldTasklet</module>
+        <module>BatchHelloWorldChunk</module>
+        <module>springBatchGuide</module>
     </modules>
 </project>

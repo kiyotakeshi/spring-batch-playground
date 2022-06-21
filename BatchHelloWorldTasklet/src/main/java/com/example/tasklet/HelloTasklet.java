@@ -5,10 +5,11 @@ import org.springframework.batch.core.StepContribution;
 import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.core.scope.context.ChunkContext;
 import org.springframework.batch.core.step.tasklet.Tasklet;
+import org.springframework.batch.item.ExecutionContext;
 import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.stereotype.Component;
 
-@Component
+@Component("HelloTasklet")
 @StepScope // step が異なると別のインスタンスが生成される(singleton ではない)
 @Slf4j
 public class HelloTasklet implements Tasklet {
@@ -16,6 +17,21 @@ public class HelloTasklet implements Tasklet {
     @Override
     public RepeatStatus execute(StepContribution stepContribution, ChunkContext chunkContext) throws Exception {
         log.info("hello world");
+
+        // ExecutionContext は実行結果を持つクラス
+        // stepから次のstepに受け渡し可能
+        ExecutionContext jobContext = stepContribution.getStepExecution()
+                .getJobExecution()
+                .getExecutionContext();
+
+        jobContext.put("jobKey", "jobValue from HelloTasklet");
+
+        // 実行中のstep内で使用可能、stepが変わると参照できない
+        ExecutionContext stepContext = stepContribution.getStepExecution()
+                .getExecutionContext();
+
+        stepContext.put("stepKey", "stepValue from HelloTasklet");
+
         return RepeatStatus.FINISHED;
     }
 }
