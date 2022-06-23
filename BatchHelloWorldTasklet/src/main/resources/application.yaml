@@ -1,0 +1,8 @@
+spring:
+  batch:
+    job:
+      # 1つのプロジェクトに複数のJobが存在する場合に実行するものを指定できる
+      # command line argument にて --job.names=Test のように指定
+      # あるいは環境変数にて JOB_NAMES=HelloWorldTaskletJob のように指定
+      # :HelloWorldTaskletJob が初期値として使用される
+      names: ${job.names:HelloWorldTaskletJob}
