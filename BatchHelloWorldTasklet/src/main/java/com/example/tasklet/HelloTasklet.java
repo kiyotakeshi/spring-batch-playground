@@ -1,5 +1,7 @@
 package com.example.tasklet;
 
+import com.example.property.SampleProperty;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.StepContribution;
 import org.springframework.batch.core.configuration.annotation.StepScope;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Component;
 @Component("HelloTasklet")
 @StepScope // step が異なると別のインスタンスが生成される(singleton ではない)
 @Slf4j
+@RequiredArgsConstructor
 public class HelloTasklet implements Tasklet {
 
     // @StepScope,JobScope の bean は jobParameters を利用できる
@@ -22,6 +25,8 @@ public class HelloTasklet implements Tasklet {
 
     @Value("#{jobParameters['option']}")
     private Integer option;
+
+    private final SampleProperty sampleProperty;
 
     @Override
     public RepeatStatus execute(StepContribution stepContribution, ChunkContext chunkContext) throws Exception {
@@ -43,6 +48,7 @@ public class HelloTasklet implements Tasklet {
 
         log.info("require={}",require);
         log.info("option={}",option);
+        log.info("sample.property={}", sampleProperty.getSampleProperty());
 
         return RepeatStatus.FINISHED;
     }
