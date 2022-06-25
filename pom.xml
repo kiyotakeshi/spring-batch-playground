@@ -17,5 +17,6 @@
         <module>BatchHelloWorldTasklet</module>
         <module>BatchHelloWorldChunk</module>
         <module>springBatchGuide</module>
+        <module>BatchCsvImport</module>
     </modules>
 </project>

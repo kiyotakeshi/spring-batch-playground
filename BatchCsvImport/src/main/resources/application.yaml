@@ -1,0 +1,22 @@
+spring:
+  batch:
+    job:
+      names: CsvImportJdbcJob
+    jdbc:
+      # jar の中を展開すると作成されるDBがわかる
+      # /Users/ponkan/.m2/repository/org/springframework/batch/spring-batch-core/4.3.6/spring-batch-core-4.3.6.jar!/org/springframework/batch/core/schema-postgresql.sql
+      # $ cp /Users/ponkan/.m2/repository/org/springframework/batch/spring-batch-core/4.3.6/spring-batch-core-4.3.6.jar /tmp/
+      # $ cd /tmp
+      # $ unzip spring-batch-core-4.3.6.jar
+      # $ cat org/springframework/batch/core/schema-postgresql.sql
+      schema: classpath:org/springframework/batch/core/schema-postgresql.sql
+      initialize-schema: always
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/spring-batch
+    username: sample
+    password: 1qazxsw2
+
+logging:
+  level:
+    '[com.example]': debug
