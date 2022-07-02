@@ -1,0 +1,16 @@
+spring:
+  batch:
+    job:
+      names: ExportJdbcCursorJob
+    jdbc:
+      initialize-schema: always
+      schema: classpath:org/springframework/batch/core/schema-postgresql.sql
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/spring-batch
+    username: sample
+    password: 1qazxsw2
+
+logging:
+  level:
+    '[com.example.demo]': debug
