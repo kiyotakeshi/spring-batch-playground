@@ -17,11 +17,11 @@ public class ExistsCheckProcessor implements ItemProcessor<Employee, Employee> {
     private final EmployeeJdbcRepository employeeJdbcRepository;
 
     @Override
-    public Employee process(Employee item) throws Exception {
+    public Employee process(Employee item) {
         boolean exists = employeeJdbcRepository.exists(item.getId());
 
         if(exists){
-            log.info("SKIP!!.Already exists employee: {}", item);
+            log.info("SKIP!!Already exists employee: {}", item);
             // writer に渡さない
             return null;
         }

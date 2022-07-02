@@ -1,7 +1,8 @@
 spring:
   batch:
     job:
-      names: CsvImportJdbcJob
+      # names: CsvImportJdbcJob
+      names: CsvImportJpaJob
     jdbc:
       # jar の中を展開すると作成されるDBがわかる
       # /Users/ponkan/.m2/repository/org/springframework/batch/spring-batch-core/4.3.6/spring-batch-core-4.3.6.jar!/org/springframework/batch/core/schema-postgresql.sql
