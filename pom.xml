@@ -19,5 +19,6 @@
         <module>springBatchGuide</module>
         <module>BatchCsvImport</module>
         <module>BatchCsvExport</module>
+        <module>BatchTestTasklet</module>
     </modules>
 </project>
