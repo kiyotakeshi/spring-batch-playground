@@ -2,7 +2,9 @@ spring:
   batch:
     job:
       # names: ExportJdbcCursorJob
-      names: ExportJdbcPagingJob
+      # names: ExportJdbcPagingJob
+      # names: ExportJpaCursorJob
+      names: ExportJpaPagingJob
     jdbc:
       initialize-schema: always
       schema: classpath:org/springframework/batch/core/schema-postgresql.sql
