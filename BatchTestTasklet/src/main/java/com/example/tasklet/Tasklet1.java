@@ -10,7 +10,7 @@ import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-@Component
+@Component("Tasklet1")
 @StepScope
 @Slf4j
 public class Tasklet1 implements Tasklet {

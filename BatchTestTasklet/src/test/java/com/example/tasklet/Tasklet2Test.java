@@ -43,7 +43,7 @@ class Tasklet2Test {
     }
 
     @Test
-    @Disabled("Random value is 10")
+    // @Disabled("Random value is 10")
     void checkRandomValue() throws Exception {
         when(component.random()).thenReturn(10);
         tasklet2.execute(null, null);
